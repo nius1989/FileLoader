@@ -96,14 +96,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FileLoaderModule\Attribute\Attribute.cs" />
-    <Compile Include="FileLoaderModule\Attribute\AttributeController.cs" />
-    <Compile Include="FileLoaderModule\Attribute\AttributeList.cs" />
-    <Compile Include="FileLoaderModule\Attribute\ATTRIBUTETYPE.cs" />
-    <Compile Include="FileLoaderModule\Item\Cell.cs" />
-    <Compile Include="FileLoaderModule\Item\Item.cs" />
-    <Compile Include="FileLoaderModule\Item\ItemController.cs" />
-    <Compile Include="FileLoaderModule\Item\ItemList.cs" />
+    <Compile Include="FileLoaderModule\Attributes\Attribute.cs" />
+    <Compile Include="FileLoaderModule\Attributes\AttributeController.cs" />
+    <Compile Include="FileLoaderModule\Attributes\AttributeList.cs" />
+    <Compile Include="FileLoaderModule\Attributes\ATTRIBUTETYPE.cs" />
+    <Compile Include="FileLoaderModule\Items\Cell.cs" />
+    <Compile Include="FileLoaderModule\Items\Item.cs" />
+    <Compile Include="FileLoaderModule\Items\ItemController.cs" />
+    <Compile Include="FileLoaderModule\Items\ItemList.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

@@ -8,5 +8,9 @@ namespace FileLoader.FileLoaderModule
 {
     class ItemController
     {
+        void frist() {
+            int a = 0;
+
+        }
     }
 }
