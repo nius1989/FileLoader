@@ -8,9 +8,16 @@ namespace FileLoader.FileLoaderModule
 {
     class ItemController
     {
-        void frist() {
-            int a = 0;
+        private ItemList itemList;
 
+        public ItemController()
+        {
+            Init();
+        }
+
+        public void Init()
+        {
+            itemList = new ItemList();
         }
     }
 }
