@@ -8,7 +8,7 @@ namespace FileLoader.FileLoaderModule
 {
     class ItemController
     {
-        private ItemList itemList;
+         ItemList itemList;
 
         public ItemController()
         {
@@ -19,5 +19,21 @@ namespace FileLoader.FileLoaderModule
         {
             itemList = new ItemList();
         }
+
+        public Cell createCell( String data, ATTRIBUTETYPE type )
+        {
+            Cell cell = new Cell();
+            cell.data = data;
+            cell.type = type;
+            return cell;
+        }
+
+        public Item createItem( Dictionary<Attribute, Cell> cellList) {
+            Item item = new Item();
+            item.cellList = cellList;
+            return item;
+        }
+
+
     }
 }

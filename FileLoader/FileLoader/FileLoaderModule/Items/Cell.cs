@@ -8,8 +8,8 @@ namespace FileLoader.FileLoaderModule
 {
     class Cell
     {
-        public ATTRIBUTETYPE type { get; private set; }
-        public String data { get; private set; }
+        public ATTRIBUTETYPE type { get; set; }
+        public String data { get; set; }
 
         public Cell() {
 

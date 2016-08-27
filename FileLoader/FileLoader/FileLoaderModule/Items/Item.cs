@@ -8,11 +8,12 @@ namespace FileLoader.FileLoaderModule
 {
     class Item
     {
-        protected Dictionary<Attribute, Cell> attributeList = new Dictionary<Attribute, Cell>();
-        public String uuid { get; private set; }
+        public Dictionary<Attribute, Cell> cellList = new Dictionary<Attribute, Cell>();
+        public String uuid { get; set; }
 
         public Item() {
 
         }
+
     }
 }

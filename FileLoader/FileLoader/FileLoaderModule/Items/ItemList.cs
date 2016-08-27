@@ -8,8 +8,8 @@ namespace FileLoader.FileLoaderModule
 {
     class ItemList
     {
-        protected Dictionary<String, Item> attributeList;
-        private int uuidCounter;
+        public Dictionary<String, Item> itemList;
+        int uuidCounter;
 
         public ItemList()
         {
@@ -19,17 +19,17 @@ namespace FileLoader.FileLoaderModule
 
         public void Init()
         {
-            attributeList = new Dictionary<String, Item>();
+            itemList = new Dictionary<String, Item>();
         }
 
         public void DeInit()
         {
-            attributeList = null;
+            itemList = null;
         }
 
         public void ClearList()
         {
-            attributeList.Clear();
+            itemList.Clear();
         }
 
         public bool AddItem(Item item)
@@ -37,7 +37,7 @@ namespace FileLoader.FileLoaderModule
             uuidCounter++;
             if (item != null)
             {
-                attributeList.Add(uuidCounter.ToString(), item);
+                itemList.Add(uuidCounter.ToString(), item);
                 return true;
             }
             return false;
@@ -45,9 +45,9 @@ namespace FileLoader.FileLoaderModule
 
         public bool RemoveItem(String id)
         {
-            if (attributeList.ContainsKey(id))
+            if (itemList.ContainsKey(id))
             {
-                attributeList.Remove(id);
+                itemList.Remove(id);
                 return true;
             }
             return false;

@@ -8,7 +8,7 @@ namespace FileLoader.FileLoaderModule
 {
     class AttributeList
     {
-        protected Dictionary<String, Attribute> attributeList = new Dictionary<string, Attribute>();
+        public Dictionary<String, Attribute> attributeList = new Dictionary<string, Attribute>();
 
         public AttributeList()
         {
