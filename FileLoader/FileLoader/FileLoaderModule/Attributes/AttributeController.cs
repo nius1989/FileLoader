@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Windows.Storage;
+using System.Text.RegularExpressions;
 
 namespace FileLoader.FileLoaderModule
 {
@@ -46,7 +47,7 @@ namespace FileLoader.FileLoaderModule
 
                 while (!sr.EndOfStream)
                 {
-                    string[] Line = sr.ReadLine().Split(',');
+                    string[] Line = Regex.Split(sr.ReadLine(), ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                     lines.Add(Line);
                     attributes = new String[Line.Length];
                     if (Row == 0)
