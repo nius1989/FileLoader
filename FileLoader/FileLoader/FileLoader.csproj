@@ -89,7 +89,8 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="Assets\csv\titanic.xls" />
+    <None Include="titanic.xls" />
+    <None Include="Assets\csv\titanic3.csv" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>

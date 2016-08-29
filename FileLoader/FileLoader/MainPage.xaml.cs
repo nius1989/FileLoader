@@ -24,10 +24,16 @@ namespace FileLoader
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        AttributeController attr = new AttributeController();
+
         public MainPage()
         {
             this.InitializeComponent();
-            AttributeController attr = new AttributeController();
+            Init();
+        }
+
+        public void Init()
+        {
             attr.init();
         }
     }
