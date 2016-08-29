@@ -8,7 +8,7 @@ namespace FileLoader.FileLoaderModule
 {
     class ItemController
     {
-         ItemList itemList;
+        public ItemList itemList;
 
         public ItemController()
         {

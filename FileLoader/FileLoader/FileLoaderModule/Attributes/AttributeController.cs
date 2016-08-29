@@ -13,7 +13,6 @@ namespace FileLoader.FileLoaderModule
     {
         AttributeList attrList;
         ItemController itemController;
-        ItemList itemList;
 
         public AttributeController(){
             init();
@@ -28,7 +27,6 @@ namespace FileLoader.FileLoaderModule
         public void init() {
             attrList = new AttributeList();
             itemController = new ItemController();
-            itemList = new ItemList();
         }
 
         public async void csvParser( String filePath ) {
@@ -40,7 +38,7 @@ namespace FileLoader.FileLoaderModule
             using (var sr = new StreamReader(classicStream))
             {
                 var lines = new List<string[]>();
-                String[] attributes;
+                String[] attributes = new String[1];
 
                 int Row = 0;
                 int counter = 0;
@@ -49,13 +47,14 @@ namespace FileLoader.FileLoaderModule
                 {
                     string[] Line = Regex.Split(sr.ReadLine(), ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                     lines.Add(Line);
-                    attributes = new String[Line.Length];
                     if (Row == 0)
                     {
+                        attributes = new String[Line.Length];
                         foreach (String str in Line)
                         {
                             Attribute attr = new Attribute();
                             attr.name = str;
+                            attr.values = new List<String>();
                             attrList.addAttribute(attr);
                             attributes[counter] = str;
                             counter++;
@@ -88,7 +87,7 @@ namespace FileLoader.FileLoaderModule
                             counter++;
                         }
                         Item item = itemController.createItem(cellList);
-                        itemList.AddItem(item);
+                        itemController.itemList.AddItem(item);
                     }
                     else
                     {
@@ -104,7 +103,7 @@ namespace FileLoader.FileLoaderModule
                             counter++;
                         }
                         Item item = itemController.createItem(cellList);
-                        itemList.AddItem(item);
+                        itemController.itemList.AddItem(item);
                     }
                     Row++;
                 }
