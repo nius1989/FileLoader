@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileLoader.FileLoaderModule;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace FileLoader
@@ -25,6 +27,8 @@ namespace FileLoader
         public MainPage()
         {
             this.InitializeComponent();
+            AttributeController attr = new AttributeController();
+            attr.init();
         }
     }
 }
