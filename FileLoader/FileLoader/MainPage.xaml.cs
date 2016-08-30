@@ -24,7 +24,7 @@ namespace FileLoader
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        AttributeController attr = new AttributeController();
+        AttributeController attributeController = new AttributeController();
 
         public MainPage()
         {
@@ -34,7 +34,7 @@ namespace FileLoader
 
         public void Init()
         {
-            attr.init();
+            attributeController.Init();
         }
     }
 }

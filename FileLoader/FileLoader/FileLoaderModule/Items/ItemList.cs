@@ -24,6 +24,7 @@ namespace FileLoader.FileLoaderModule
 
         public void DeInit()
         {
+            itemList.Clear();
             itemList = null;
         }
 

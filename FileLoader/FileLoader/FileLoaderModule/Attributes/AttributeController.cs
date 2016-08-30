@@ -11,43 +11,55 @@ namespace FileLoader.FileLoaderModule
 {
     class AttributeController
     {
-        AttributeList attrList;
+        public static String filePath = @"Assets\titanic.csv";
         ItemController itemController;
+        AttributeList attributeList;
 
-        public AttributeController(){
-            init();
-            String filePath = @"C:\Users\swoos\OneDrive\School\Fall 2016\UGResearch\Fall 2016 NEW\FileLoader\FileLoader\Assets\csv\titanic.xls";
+        public AttributeController() {
+            Init();
+        }
+
+        /// <summary>
+        /// Creates itemController and attributeList, and parses through CSV file
+        /// </summary>
+        public void Init() {
+            itemController = new ItemController();
+            attributeList = new AttributeList();
             csvParser(filePath);
         }
 
-        /*public static void Main( String[] args) {
-            AttributeController attributeController = new AttributeController();
-        }
-        */
-        public void init() {
-            attrList = new AttributeList();
-            itemController = new ItemController();
+        /// <summary>
+        /// Clears all objects and sets objects to null
+        /// </summary>
+        public void DeInit() {
+            itemController.itemList.DeInit();
+            itemController = null;
+            attributeList.DeInit();
+            attributeList = null;
         }
 
-        public async void csvParser( String filePath ) {
-            string title = @"Assets\titanic.csv";
+        /// <summary>
+        /// Parses through csv file and adds items to attributeList and itemList
+        /// </summary>
+        /// <param name="filePath"></param>
+        public async void csvParser(String filePath) {
             StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            StorageFile file = await folder.GetFileAsync(title);
+            StorageFile file = await folder.GetFileAsync(filePath);
             using (var inputStream = await file.OpenReadAsync())
             using (var classicStream = inputStream.AsStreamForRead())
             using (var sr = new StreamReader(classicStream))
             {
-                var lines = new List<string[]>();
+                var lines = new List<String[]>();
                 String[] attributes = new String[1];
 
-                int Row = 0;
+                int row = 0;
                 int counter = 0;
 
                 while (!sr.EndOfStream)
                 {
-                    string[] Line = Regex.Split(sr.ReadLine(), ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                    String[] Line = Regex.Split(sr.ReadLine(), ",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                     lines.Add(Line);
-                    if (Row == 0)
+                    if (row == 0)
                     {
                         attributes = new String[Line.Length];
                         foreach (String str in Line)
@@ -55,12 +67,12 @@ namespace FileLoader.FileLoaderModule
                             Attribute attr = new Attribute();
                             attr.name = str;
                             attr.values = new List<String>();
-                            attrList.addAttribute(attr);
+                            attributeList.addAttribute(attr);
                             attributes[counter] = str;
                             counter++;
                         }
                     }
-                    else if (Row == 1)
+                    else if (row == 1)
                     {
                         counter = 0;
                         Dictionary<Attribute, Cell> cellList = new Dictionary<Attribute, Cell>();
@@ -68,7 +80,7 @@ namespace FileLoader.FileLoaderModule
                         foreach (String str in Line)
                         {
                             String column = attributes[counter];
-                            Attribute currentAttribute = attrList.attributeList[column];
+                            Attribute currentAttribute = attributeList.attributeList[column];
                             if (isDigitsOnly(str))
                             {
                                 currentAttribute.type = ATTRIBUTETYPE.Numerical;
@@ -96,7 +108,7 @@ namespace FileLoader.FileLoaderModule
                         foreach (String str in Line)
                         {
                             String column = attributes[counter];
-                            Attribute currentAttribute = attrList.attributeList[column];
+                            Attribute currentAttribute = attributeList.attributeList[column];
                             currentAttribute.values.Add(str);
                             Cell cell = itemController.createCell(str, currentAttribute.type);
                             cellList.Add(currentAttribute, cell);
@@ -105,26 +117,27 @@ namespace FileLoader.FileLoaderModule
                         Item item = itemController.createItem(cellList);
                         itemController.itemList.AddItem(item);
                     }
-                    Row++;
+                    row++;
                 }
             }
-
         }
 
-        /*private bool addAttribute(Attribute attr) {
-
-
-            return true;
-        }
-        */
-
-        //checks to see if the cells in the second row are digits or string values
-        private bool isDigitsOnly( String str )
+        /// <summary>
+        /// Checks to see if the cells in the second row are digits or string values
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private bool isDigitsOnly(String str)
         {
             int i;
             return int.TryParse(str, out i);
         }
 
+        /// <summary>
+        /// Checks to see if the cells in the second row are dates
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         private bool isDate(String str)
         {
             DateTime dateTime;
